@@ -70,6 +70,16 @@ public class Libro {
             System.out.println("Error al establecer la editorial: " + e.getMessage());
         }
     }
+    public void setActualizar_titulo(String prefijo, String nuevo_titulo){
+        try{
+            if((prefijo == null || prefijo.trim().isEmpty()) || (nuevo_titulo == null || nuevo_titulo.trim().isEmpty())){
+                throw new IllegalArgumentException("Los campos prefijo y titulo no pueden estar vacios");
+            }
+            this.titulo = prefijo +" "+ nuevo_titulo;
+        }catch(Exception e){
+            System.out.println("Error al establecer el prefijo y titulo nuevo");
+        }
+    }
     //Metodos sobrecargados
     public static String editorial(String editorial){
         return Libro.editorial = editorial;

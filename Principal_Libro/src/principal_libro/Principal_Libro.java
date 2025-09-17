@@ -16,7 +16,14 @@ public class Principal_Libro {
         System.out.println(libro3);
         System.out.println(libro4);
         
+        //Cambiamos editorial
         libro1.setEditorial("Editorial Sonora");
+        System.out.println(libro1);
+        
+        //Agregamos prefijo
+        System.out.println("Agregamos prefijo al titulo");
+        libro1.setActualizar_titulo("Edición Conmemorativa", "El arte de modelar datos");
+        System.out.println("");
         System.out.println(libro1);
     }
 }

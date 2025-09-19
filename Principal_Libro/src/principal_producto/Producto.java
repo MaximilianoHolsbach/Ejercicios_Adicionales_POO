@@ -4,8 +4,7 @@ public class Producto {
     private String nombre;
     private double precio_base;
     private static double iva = 0.21;
-    private double precio_final;
-    private double precio_descuento;
+
     //Constructores
     public Producto(String nombre,double precio_base){
         setNombre(nombre);
@@ -22,15 +21,15 @@ public class Producto {
             if(porcentaje == 0.0){
                 throw new IllegalArgumentException("El porcentaje ingresado no puede ser cero");
             }
-            this.precio_descuento = this.precio_base - (this.precio_base * porcentaje);
-            return this.precio_descuento;
+            this.precio_base = this.precio_base - (this.precio_base * porcentaje);
+            return this.precio_base;
         } catch (Exception e) {
             System.out.println("Error al establecer el descuento");
             return 100;
         }
     }
-    public double setCalcular_precio_final(){
-        return (this.precio_final + this.precio_descuento) * (1 + Producto.iva);
+    public void setCalcular_precio_final(){
+        this.precio_base *= (1 + Producto.iva);
     }
     public static void setCambiar_iva(double nuevo_iva){
         try {
@@ -45,7 +44,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "\nNombre = " + nombre + "\nPrecio base = " + precio_base +"\nPrecio final = "+precio_final+ '}';
+        return "Producto{" + "\nNombre = " + nombre + "\nPrecio base = " + precio_base +'}';
     }
     
     //Metodo recargado
@@ -55,14 +54,14 @@ public class Producto {
                 throw new IllegalArgumentException("Los valores solicitados no pueden ser menores o igual a cero");
             }
             if(setAplicar_Descuento(porcentaje) > precio_minimo){
-                this.precio_descuento = setAplicar_Descuento(porcentaje);
-                return this.precio_descuento;
+                this.precio_base = setAplicar_Descuento(porcentaje);
+                return this.precio_base;
             }
-            this.precio_descuento = precio_minimo;
-            return this.precio_descuento;
+            this.precio_base = precio_minimo;
+            return this.precio_base;
         } catch (Exception e) {
             System.out.println("Error al aplicar descuento");
-            return this.precio_descuento;
+            return this.precio_base;
         }
     }
     //Metodo privados
